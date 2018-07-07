@@ -8,30 +8,26 @@
         </div>
         <div class="options">
             <h2>Available Cocktails</h2>
-            <button @click="addCocktail(cocktail)" :class="cocktail.type" v-for="cocktail in cocktails" :key="cocktail">
-            {{ cocktail.name | capitalize }} - €{{cocktailCost(cocktail) | round}}
+            <button @click="addCocktail(name)" :class="type" v-for="{name, type, cost} in cocktails" :key="name">
+            {{ name | capitalize }} - €{{ cost | round}}
             </button>
         </div>
         <div v-show="chosenCocktails.length > 0" class="description">
             <h2>Chosen Cocktails!</h2>
-            <button @click="removeCocktail(object)"  :class="object.cocktail.type" v-for=" object in chosenCocktails" :key="object">
-            {{ object.cocktail.name | capitalize }} {{object.quantity}} 
+            <button @click="removeCocktail(cocktail)"  :class="'cocktail'" v-for=" cocktail in chosenCocktails" :key="cocktail">
+            {{ cocktail | capitalize }} {{nameToCocktail(cocktail).quantity}} 
             </button>
             <h2>The Cost of These Cocktails is €{{ totalCost | round}}</h2>
         </div>
         <div class="oneMore">
             <h3>You Need the following ingredients :</h3>
-            <button @click="changeSortingOrder(1)" class="ordering">Type</button>
-            <button @click="changeSortingOrder(2)" class="ordering">Number of Cocktails</button>
-            <button @click="changeSortingOrder(3)" class="ordering">Name</button>
-            <div class="missingIngredients" v-for="item in ingredientToCocktail" :key="item">
-                <div class="firstBox">
-                    <button :class="item.type">{{item.name | capitalize}}</button>
-                </div>
-                <p> is in :</p>
-                <div class="secondBox">
-                    <button :class="cocktail.type" v-for="cocktail in whichCocktails(item)" :key="cocktail">{{ cocktail.name }}</button>
-                </div>
+            <button class="ordering" @click="orderCocktails('type')">Type</button>
+            <button class="ordering" @click="orderCocktails('number')">Number of missing ingredients</button>
+            <button class="ordering" @click="orderCocktails('name')">Name</button>
+            <div v-if="combinedIngredients.length > 0" class="missingIngredients">
+                <button :class="type" v-for="{name, type, quantity} in combinedIngredients" :key="name">
+                    {{name}} {{quantity}}
+                </button>
             </div>
         </div>
     </div>
@@ -42,31 +38,17 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
     computed: {
+        ...mapState(['chosenCocktails']),
+
         ...mapGetters([
-            'types',
-            'chosenIngredients',
-            'selection',
-            'chosen',
-            'possible',
-            'atLeastOne',
-            'missingIngredients',
-            'chosenType',
-            'chosenIngredientsCost',
-            'missingQuantities',
-            'missingPrice',
-            'nameToIngredient',
             'cocktails',
-            'cocktailCost',
-            'chosenCocktails',
             'totalCost',
-            'ingredientToCocktail',
-            'whichCocktails',
-            'sortIngredients',
-            'sortingOption'
+            'combinedIngredients',
+            'nameToCocktail'
         ]),
     },
     methods: {
-        ...mapActions(['changeSortingOrder', 'addCocktail', 'removeCocktail'])
+        ...mapActions(['addCocktail', 'removeCocktail', 'orderCocktails'])
     }
 }
 </script>

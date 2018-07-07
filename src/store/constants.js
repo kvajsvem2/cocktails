@@ -3,170 +3,142 @@ export default {
     {
       name: 'syrup',
       type: 'soft-drink',
-      price: 0.2,
-      quantity: 0
+      price: 0.2
     },
     {
       name: 'lime',
       type: 'fruit',
-      price: 0.1,
-      quantity: 0
+      price: 0.1
     },
     {
       name: 'pineapple',
       type: 'fruit',
-      price: 0.2,
-      quantity: 0
+      price: 0.2
     },
     {
       name: 'orange',
       type: 'fruit',
-      price: 0.1,
-      quantity: 0
+      price: 0.1
     },
     {
       name: 'cranberry',
       type: 'fruit',
-      price: 0.3,
-      quantity: 0
+      price: 0.3
     },
     {
       name: 'coconut',
       type: 'fruit',
-      price: 0.3,
-      quantity: 0
+      price: 0.3
     },
     {
       name: 'mint',
       type: 'herb',
-      price: 0.1,
-      quantity: 0
+      price: 0.1
     },
     {
       name: 'lemon',
       type: 'fruit',
-      price: 0.1,
-      quantity: 0
+      price: 0.1
     },
     {
       name: 'tomato',
       type: 'fruit',
-      price: 0.1,
-      quantity: 0
+      price: 0.1
     },
     {
       name: 'coca cola',
       type: 'soft-drink',
-      price: 0.2,
-      quantity: 0
+      price: 0.2
     },
     {
       name: 'ginger beer',
       type: 'soft-drink',
-      price: 0.4,
-      quantity: 0
+      price: 0.4
     },
     {
       name: 'rum',
       type: 'liquor',
-      price: 1.5,
-      quantity: 0
+      price: 1.5
     },
     {
       name: 'vodka',
       type: 'liquor',
-      price: 2.5,
-      quantity: 0
+      price: 2.5
     },
     {
       name: 'peach schnapps',
       type: 'liquor',
-      price: 1.0,
-      quantity: 0
+      price: 1.0
     },
     {
       name: 'triple sec',
       type: 'liquor',
-      price: 2.5,
-      quantity: 0
+      price: 2.5
     },
     {
       name: 'whiskey',
       type: 'liquor',
-      price: 3.0,
-      quantity: 0
+      price: 3.0
     },
     {
       name: 'tequila',
       type: 'liquor',
       price: 1.5,
-      quantity: 0
     },
     {
       name: 'grenadine',
       type: 'liquor',
-      price: 1.5,
-      quantity: 0
+      price: 1.5
     },
     {
       name: 'orange liqueur',
       type: 'liquor',
-      price: 2.0,
-      quantity: 0
+      price: 2.0
     },
     {
       name: 'coffee liqueur',
       type: 'liquor',
-      price: 1.5,
-      quantity: 0
+      price: 1.5
     },
     {
       name: 'gin',
       type: 'liquor',
-      price: 1.5,
-      quantity: 0
+      price: 1.5
     },
     {
       name: 'prosecco',
       type: 'wine',
-      price: 1.5,
-      quantity: 0
+      price: 1.5
     },
     {
       name: 'peach purée',
       type: 'soft-drink',
-      price: 0.5,
-      quantity: 0
+      price: 0.5
     },
     {
       name: 'cachaça',
       type: 'liquor',
-      price: 2.0,
-      quantity: 0
+      price: 2.0
     },
     {
       name: 'soda water',
       type: 'soft-drink',
-      price: 0.3,
-      quantity: 0
+      price: 0.3
     },
     {
       name: 'champagne',
       type: 'wine',
-      price: 2.0,
-      quantity: 0
+      price: 2.0
     },
     {
       name: 'white wine',
       type: 'wine',
-      price: 1.0,
-      quantity: 0
+      price: 1.0
     },
     {
       name: 'crème de cassis',
       type: 'liquor',
-      price: 2.0,
-      quantity: 0
+      price: 2.0
     }
   ],
   cocktails: [
