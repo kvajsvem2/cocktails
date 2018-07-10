@@ -5,7 +5,9 @@
             <router-link to="/">Choose Your Ingredients</router-link>
             <router-link to="/cocktails">Choose Your Cocktails</router-link>
         </div>
-      <button v-for="item in types" @click="select(item)" :class="item" :key="item">{{ item | capitalize | plural }}</button>
+      <button v-for="item in types" @click="select(item)" :class="item" :key="item">
+        {{ item | capitalize | plural }}
+      </button>
       <input type="text" placeholder="search ingredients" v-model="searchIngredients" />
       <div class="options">
         <button @click="addIngredient(name)" :class="type" v-for="{name, type, price} in filteredChosenType" :key="name">
@@ -13,15 +15,15 @@
         </button>
       </div>
     </div>
-    <div v-show="chosenIngredients.length > 0" class="description">
-      <h2>Chosen Ingredients!</h2>
-      <button @click="removeIngredient(name)" :class="type" v-for="{name, type, quantity} in chosen" :key="name">
-        {{ name | capitalize }} {{quantity}}
+    <div class="description">
+      <h2 v-show="chosenIngredients.length > 0">Chosen Ingredients!</h2>
+      <button @click="removeIngredient(name)" :class="type" v-for="{name, type} in chosenIngredients" :key="name">
+        {{ name | capitalize }} {{ingredientQuantities[name]}}
       </button>
-      <h2>The Cost of These Ingredients is €{{ chosenIngredientsCost | round }}</h2>
+      <h2 v-show="chosenIngredients.length > 0">The Cost of These Ingredients is €{{ chosenIngredientsCost | round }}</h2>
     </div>
-    <div class="result" v-show="possible.length > 0">
-      <h2>You Can Make:</h2>
+    <div class="result">
+      <h2 v-show="possible.length > 0">You Can Make:</h2>
       <button :class="type" v-for="{name, type} in possible" :key="name">
         {{ name | capitalize }}
       </button>
@@ -38,8 +40,8 @@
         </div>
         <p>You Are Missing:</p>
         <div class="secondBox">
-          <button :class="ingredient.type" v-for="ingredient in missing" :key="ingredient.name">
-            {{ ingredient.name | capitalize }} {{missingQuantities(ingredient, cocktail)}}
+          <button :class="type" v-for="{name, type} in missing" :key="name">
+            {{ name | capitalize }} {{missingQuantities(name, cocktail)}}
           </button>
         </div>
         <p> €{{ price | round }}</p>
@@ -61,11 +63,11 @@ export default {
   },
   computed: {
 
-    ...mapState(['chosenIngredients']),
+    ...mapState(['ingredientQuantities']),
 
     ...mapGetters([
       'types',
-      'chosen',
+      'chosenIngredients',
       'possible',
       'atLeastOne',
       'missingIngredients',

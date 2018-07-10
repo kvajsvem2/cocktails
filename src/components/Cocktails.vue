@@ -9,23 +9,23 @@
         <div class="options">
             <h2>Available Cocktails</h2>
             <button @click="addCocktail(name)" :class="type" v-for="{name, type, cost} in cocktails" :key="name">
-            {{ name | capitalize }} - €{{ cost | round}}
+            {{ name | capitalize }} - €{{ cost | round }}
             </button>
         </div>
-        <div v-show="chosenCocktails.length > 0" class="description">
-            <h2>Chosen Cocktails!</h2>
-            <button @click="removeCocktail(cocktail)"  :class="'cocktail'" v-for=" cocktail in chosenCocktails" :key="cocktail">
-            {{ cocktail | capitalize }} {{nameToCocktail(cocktail).quantity}} 
+        <div class="description">
+            <h2 v-show="chosenCocktails.length > 0">Chosen Cocktails!</h2>
+            <button @click="removeCocktail(name)"  :class="'cocktail'" v-for=" {name} in chosenCocktails" :key="name">
+            {{ name | capitalize }} {{cocktailQuantities[name]}} 
             </button>
-            <h2>The Cost of These Cocktails is €{{ totalCost | round}}</h2>
+            <h2 v-show="chosenCocktails.length > 0">The Cost of These Cocktails is €{{ totalCost | round }}</h2>
         </div>
         <div class="oneMore">
             <h3>You Need the following ingredients :</h3>
             <button class="ordering" @click="orderCocktails('type')">Type</button>
             <button class="ordering" @click="orderCocktails('number')">Number of missing ingredients</button>
             <button class="ordering" @click="orderCocktails('name')">Name</button>
-            <div v-if="combinedIngredients.length > 0" class="missingIngredients">
-                <button :class="type" v-for="{name, type, quantity} in combinedIngredients" :key="name">
+            <div class="missingIngredients">
+                <button v-show="quantity > 0" :class="type" v-for="{name, type, quantity} in combinedIngredients" :key="name">
                     {{name}} {{quantity}}
                 </button>
             </div>
@@ -38,13 +38,13 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
     computed: {
-        ...mapState(['chosenCocktails']),
+        ...mapState(['cocktailQuantities']),
 
         ...mapGetters([
             'cocktails',
             'totalCost',
             'combinedIngredients',
-            'nameToCocktail'
+            'chosenCocktails'
         ]),
     },
     methods: {
