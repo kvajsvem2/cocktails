@@ -5,6 +5,11 @@ import App from './App'
 import { store } from './store/store'
 import VueRouter from 'vue-router'
 import Routes from './routes'
+import VueResource from 'vue-resource'
+
+
+
+Vue.use(VueResource)
 
 Vue.use(VueRouter)
 

@@ -4,6 +4,7 @@
       <div class="mainButton">
             <router-link to="/">Choose Your Ingredients</router-link>
             <router-link to="/cocktails">Choose Your Cocktails</router-link>
+            <router-link to="/addingredient">New Ingredient</router-link>
         </div>
       <button v-for="item in types" @click="select(item)" :class="item" :key="item">
         {{ item | capitalize | plural }}

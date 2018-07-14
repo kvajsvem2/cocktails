@@ -205,6 +205,17 @@ export const store = new Vuex.Store({
       chosenCocktails: function(state){
         return constants.cocktails.filter(cocktail => state.cocktailQuantities[cocktail.name] != 0)
       },
+      chosenCocktailsAnalysis: function(state){
+        return constants.cocktails.filter(cocktail => state.cocktailQuantities[cocktail.name] == -1).map(cocktail => {
+          let bitterSweet = cocktail.ingredients.reduce((acc, current) => 
+            acc + (constants.ingredients.find(obj => obj.name == current.name).bitterSweet * current.quantity)
+          , 0)
+          return {
+            ...cocktail,
+            bitterSweet: bitterSweet
+          }
+        })
+      },
       totalCost: function(state, getters){
         return getters.chosenCocktails.reduce((acc, current) => acc + (getters.cocktailCost(current) * state.cocktailQuantities[current.name]), 0)
       },
@@ -265,6 +276,12 @@ export const store = new Vuex.Store({
         addCocktail(state, name){
           state.cocktailQuantities[name] += 1
         },
+        removeCocktailAnalysis(state, name){
+          state.cocktailQuantities[name] = 0
+        },
+        addCocktailAnalysis(state, name){
+          state.cocktailQuantities[name] = -1
+        },
         addIngredient(state, name){
           state.ingredientQuantities[name] += 1
         },
@@ -287,6 +304,12 @@ export const store = new Vuex.Store({
         },
         addCocktail(context, name){
           context.commit('addCocktail', name)
+        },
+        removeCocktailAnalysis(context, name){
+          context.commit('removeCocktailAnalysis', name)
+        },
+        addCocktailAnalysis(context, name){
+          context.commit('addCocktailAnalysis', name)
         },
         addIngredient(context, name){
             context.commit('addIngredient', name)
