@@ -202,6 +202,11 @@
     text-align: center;
   }
 
+  .displayIngredients{
+    background: rgb(154, 241, 132);
+    margin-top: 20px;
+  }
+
   .form{
     float: left;
     background: rgb(154, 241, 132);
