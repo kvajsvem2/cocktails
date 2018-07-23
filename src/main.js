@@ -6,10 +6,9 @@ import { store } from './store/store'
 import VueRouter from 'vue-router'
 import Routes from './routes/routes'
 import axios from 'axios'
+import VueAxios from 'vue-axios'
 
-
-
-Vue.use(axios)
+Vue.use(VueAxios, axios)
 
 Vue.use(VueRouter)
 

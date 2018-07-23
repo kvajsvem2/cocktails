@@ -55,7 +55,7 @@ export default {
     },
     methods: {
         postIngredient(){
-            axios.post('http://localhost:8080/?#/addingredient', this.ingredient).then(function(response){
+            axios.post('http://localhost:8080/#/addingredient', this.ingredient).then(function(response){
                 console.log(response)
             }).catch(error => console.log(error))
         },

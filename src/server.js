@@ -1,16 +1,38 @@
 var express = require('express')
-var mongoose = require('mongoose')
-var bodyParser = require('body-parser')
+    path = require('path')
+    bodyParser = require('body-parser')
+    cors = require('cors')
+    mongoose = require('mongoose')
+    config = require('./DB.js')
 
 mongoose.Promise = global.Promise
 
+mongoose.connect(config.DB).then(
+    () => {console.log('Database is conected!')},
+    err => { console.log('Can not connect to the database ' + err)}
+)
+
+const app = express()
+app.use(express.static('public'))
+app.use(bodyParser.json())
+app.use(cors())
+const port = process.env.PORT || 8080
+
+var server = app.listen(function(){
+    console.log('listening on port ' + port)
+})
+
+
+
+
+
 mongoose.connect('mongodb://localhost/ingredients')
 
-var app = express()
+
 
 app.use(bodyParser.urlencoded({extended: true }))
 app.use(bodyParser.json())
 
-app.listen(8080)
+
 
 console.log('listening to port 8080')
