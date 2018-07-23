@@ -25,7 +25,7 @@
         </div>
         <h1>Delete an Ingredient from DB</h1>
         <div class="displayIngredients">
-            <button @click="deleteIngredient(key)" :key="key" v-for="{name, key} in ingredients" class="cocktail">{{ name }}</button>
+            <button  :key="key" v-for="{name, key} in ingredients" class="cocktail">{{ name }}</button>
         </div>
         <h1>Add a New Cocktail!</h1>
         <div class="displayIngredients">
@@ -38,19 +38,9 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-    created(){
-        this.$http.get('https://cocktails2-1f770.firebaseio.com/ingredients.json').then(function(data){
-            return data.json()
-        }).then(function(data){
-            for(let key in data){
-                this.ingredients.push({
-                    ...data[key],
-                    key
-                })
-            }
-        })
-    },
+    
     data(){
         return {
             ingredient: {
@@ -65,16 +55,9 @@ export default {
     },
     methods: {
         postIngredient(){
-            this.$http.post('https://cocktails2-1f770.firebaseio.com/ingredients.json', this.ingredient).then(function(response){
-                console.log('You logged another ingredient')
-                alert('you added another ingredient!') 
-            })
-        },
-        deleteIngredient(key){
-            this.$http.delete('https://cocktails2-1f770.firebaseio.com/ingredients/' + key + '.json', key).then(function(data){
-                console.log('you deleted an ingredient!')
-                alert('you deleted an ingredient')
-            })
+            axios.post('http://localhost:8080/?#/addingredient', this.ingredient).then(function(response){
+                console.log(response)
+            }).catch(error => console.log(error))
         },
     }
 }
